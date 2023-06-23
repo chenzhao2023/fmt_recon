@@ -1,0 +1,132 @@
+nvcc -c -g -lineinfo -Xcompiler -Wall -Xcompiler -fopenmp -m64 -DSAVE_DETECTORS -use_fast_math -arch=sm_30 -DMCX_TARGET_NAME='"Fermi MCX"' --compiler-options "-fPIC" -DMCX_CONTAINER -DUSE_ATOMIC -use_fast_math -DSAVE_DETECTORS -o mcx_core.o  mcx_core.cu
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o mcx_utils.o  mcx_utils.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o mcx_shapes.o  mcx_shapes.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o tictoc.o  tictoc.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o mcextreme.o  mcextreme.c
+gcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -c -o mcx_bench.o  mcx_bench.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o cjson/cJSON.o  cjson/cJSON.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o ubj/ubjw.o  ubj/ubjw.c
+make -C zmat lib AR=ar CPPOPT="-fPIC -O3" USERLINKOPT=
+make[1]: Entering directory '/drives/taote1/users/fangq/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+Building zmatlib.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o zmatlib.o zmatlib.c
+Building lz4/lz4.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o lz4/lz4.o lz4/lz4.c
+Building lz4/lz4hc.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o lz4/lz4hc.o lz4/lz4hc.c
+Building easylzma/compress.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/compress.o easylzma/compress.c
+Building easylzma/decompress.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/decompress.o easylzma/decompress.c
+Building easylzma/lzma_header.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/lzma_header.o easylzma/lzma_header.c
+Building easylzma/lzip_header.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/lzip_header.o easylzma/lzip_header.c
+Building easylzma/common_internal.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/common_internal.o easylzma/common_internal.c
+Building easylzma/pavlov/LzmaEnc.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/LzmaEnc.o easylzma/pavlov/LzmaEnc.c
+Building easylzma/pavlov/LzmaDec.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/LzmaDec.o easylzma/pavlov/LzmaDec.c
+Building easylzma/pavlov/LzmaLib.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/LzmaLib.o easylzma/pavlov/LzmaLib.c
+Building easylzma/pavlov/LzFind.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/LzFind.o easylzma/pavlov/LzFind.c
+Building easylzma/pavlov/Bra.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/Bra.o easylzma/pavlov/Bra.c
+Building easylzma/pavlov/BraIA64.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/BraIA64.o easylzma/pavlov/BraIA64.c
+Building easylzma/pavlov/Alloc.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/Alloc.o easylzma/pavlov/Alloc.c
+Building easylzma/pavlov/7zCrc.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/7zCrc.o easylzma/pavlov/7zCrc.c
+Building ../libzmat.a
+ar cr -o ../libzmat.a zmatlib.o lz4/lz4.o lz4/lz4hc.o easylzma/compress.o easylzma/decompress.o easylzma/lzma_header.o easylzma/lzip_header.o easylzma/common_internal.o easylzma/pavlov/LzmaEnc.o easylzma/pavlov/LzmaDec.o easylzma/pavlov/LzmaLib.o easylzma/pavlov/LzFind.o easylzma/pavlov/Bra.o easylzma/pavlov/BraIA64.o easylzma/pavlov/Alloc.o easylzma/pavlov/7zCrc.o  
+make[1]: Leaving directory '/drives/taote1/users/fangq/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+mex mcx_core.o mcx_utils.o mcx_shapes.o tictoc.o mcextreme.o mcx_bench.o cjson/cJSON.o ubj/ubjw.o -output ../mcxlab/mcx -L/usr/local/cuda/lib64 -lcudart -lm -lstdc++ CXXFLAGS='$CXXFLAGS -g -DSAVE_DETECTORS -DMCX_CONTAINER -fopenmp  ' LDFLAGS='-L$TMW_ROOT$MATLABROOT/sys/os/$ARCH $LDFLAGS -fopenmp libzmat.a -lz' mcxlab.cpp -outdir ../mcxlab -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj  libzmat.a -lz
+
+Warning: You are using gcc version "7.5.0-3ubuntu1~18.04)".  The version
+         currently supported with MEX is "4.3.4".
+         For a list of currently supported compilers see: 
+         http://www.mathworks.com/support/compilers/current_release/
+
+nvcc -c -g -lineinfo -Xcompiler -Wall -Xcompiler -fopenmp -m64 -DSAVE_DETECTORS -use_fast_math -arch=sm_30 -DMCX_TARGET_NAME='"Fermi MCX"' --compiler-options "-fPIC" -DMCX_CONTAINER -DUSE_ATOMIC -use_fast_math -DSAVE_DETECTORS -o mcx_core.o  mcx_core.cu
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o mcx_utils.o  mcx_utils.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o mcx_shapes.o  mcx_shapes.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o tictoc.o  tictoc.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o mcextreme.o  mcextreme.c
+gcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -c -o mcx_bench.o  mcx_bench.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o cjson/cJSON.o  cjson/cJSON.c
+cc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -g -Wall -std=c99  -fopenmp -m64 -fPIC -DMCX_CONTAINER -c -o ubj/ubjw.o  ubj/ubjw.c
+make -C zmat lib AR=ar CPPOPT="-fPIC -O3" USERLINKOPT=
+make[1]: Entering directory '/drives/taote1/users/fangq/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+Building zmatlib.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o zmatlib.o zmatlib.c
+Building lz4/lz4.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o lz4/lz4.o lz4/lz4.c
+Building lz4/lz4hc.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o lz4/lz4hc.o lz4/lz4hc.c
+Building easylzma/compress.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/compress.o easylzma/compress.c
+Building easylzma/decompress.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/decompress.o easylzma/decompress.c
+Building easylzma/lzma_header.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/lzma_header.o easylzma/lzma_header.c
+Building easylzma/lzip_header.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/lzip_header.o easylzma/lzip_header.c
+Building easylzma/common_internal.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/common_internal.o easylzma/common_internal.c
+Building easylzma/pavlov/LzmaEnc.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/LzmaEnc.o easylzma/pavlov/LzmaEnc.c
+Building easylzma/pavlov/LzmaDec.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/LzmaDec.o easylzma/pavlov/LzmaDec.c
+Building easylzma/pavlov/LzmaLib.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/LzmaLib.o easylzma/pavlov/LzmaLib.c
+Building easylzma/pavlov/LzFind.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/LzFind.o easylzma/pavlov/LzFind.c
+Building easylzma/pavlov/Bra.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/Bra.o easylzma/pavlov/Bra.c
+Building easylzma/pavlov/BraIA64.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/BraIA64.o easylzma/pavlov/BraIA64.c
+Building easylzma/pavlov/Alloc.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/Alloc.o easylzma/pavlov/Alloc.c
+Building easylzma/pavlov/7zCrc.o
+cc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -fPIC -O3 -c -o easylzma/pavlov/7zCrc.o easylzma/pavlov/7zCrc.c
+Building ../libzmat.a
+ar cr -o ../libzmat.a zmatlib.o lz4/lz4.o lz4/lz4hc.o easylzma/compress.o easylzma/decompress.o easylzma/lzma_header.o easylzma/lzip_header.o easylzma/common_internal.o easylzma/pavlov/LzmaEnc.o easylzma/pavlov/LzmaDec.o easylzma/pavlov/LzmaLib.o easylzma/pavlov/LzFind.o easylzma/pavlov/Bra.o easylzma/pavlov/BraIA64.o easylzma/pavlov/Alloc.o easylzma/pavlov/7zCrc.o  
+make[1]: Leaving directory '/drives/taote1/users/fangq/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+CXXFLAGS='-DSAVE_DETECTORS -fopenmp  ' LFLAGS='-fopenmp libzmat.a -lz' LDFLAGS='' mkoctfile mcx_core.o mcx_utils.o mcx_shapes.o tictoc.o mcextreme.o mcx_bench.o cjson/cJSON.o ubj/ubjw.o -output ../mcxlab/mcx.mex -L/usr/local/cuda/lib64 -lcudart -lm -lstdc++ --mex mcxlab.cpp -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj  libzmat.a -lz
+mcxlab.cpp: In function ‘void mcx_set_field(const mxArray*, const mxArray*, int, Config*)’:
+mcxlab.cpp:721:78: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘dimtype {aka int}’ [-Wformat=]
+         printf("mcx.srcpattern=[%ld %ld %ld];\n",arraydim[0],arraydim[1],dimz);
+                                                  ~~~~~~~~~~~                 ^
+mcxlab.cpp:721:78: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 3 has type ‘dimtype {aka int}’ [-Wformat=]
+mcxlab.cpp:721:78: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 4 has type ‘dimtype {aka int}’ [-Wformat=]
+mcxlab.cpp:737:49: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘unsigned int’ [-Wformat=]
+         printf("mcx.invcdf=[%ld];\n",cfg->nphase);
+                                      ~~~~~~~~~~~^
+mcxlab.cpp:760:69: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘dimtype {aka int}’ [-Wformat=]
+         printf("mcx.detphotons=[%ld %ld];\n",arraydim[0],arraydim[1]);
+                                              ~~~~~~~~~~~            ^
+mcxlab.cpp:760:69: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 3 has type ‘dimtype {aka int}’ [-Wformat=]
+mcxlab.cpp:813:65: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘int’ [-Wformat=]
+         printf("mcx.workload=<<%ld>>;\n",arraydim[0]*arraydim[1]);
+                                          ~~~~~~~~~~~~~~~~~~~~~~~^
+CXXFLAGS='-DSAVE_DETECTORS -fopenmp  ' LFLAGS='-fopenmp libzmat.a -lz' LDFLAGS='' mkoctfile mcx_core.o mcx_utils.o mcx_shapes.o tictoc.o mcextreme.o mcx_bench.o cjson/cJSON.o ubj/ubjw.o -output ../mcxlab/mcx.mex -L/usr/local/cuda/lib64 -lcudadevrt -lcudart_static -ldl -lrt -static-libgcc -static-libstdc++ -lm -static-libgcc -static-libstdc++ --mex mcxlab.cpp -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj  libzmat.a -lz
+mcxlab.cpp: In function ‘void mcx_set_field(const mxArray*, const mxArray*, int, Config*)’:
+mcxlab.cpp:721:78: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘dimtype {aka int}’ [-Wformat=]
+         printf("mcx.srcpattern=[%ld %ld %ld];\n",arraydim[0],arraydim[1],dimz);
+                                                  ~~~~~~~~~~~                 ^
+mcxlab.cpp:721:78: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 3 has type ‘dimtype {aka int}’ [-Wformat=]
+mcxlab.cpp:721:78: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 4 has type ‘dimtype {aka int}’ [-Wformat=]
+mcxlab.cpp:737:49: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘unsigned int’ [-Wformat=]
+         printf("mcx.invcdf=[%ld];\n",cfg->nphase);
+                                      ~~~~~~~~~~~^
+mcxlab.cpp:760:69: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘dimtype {aka int}’ [-Wformat=]
+         printf("mcx.detphotons=[%ld %ld];\n",arraydim[0],arraydim[1]);
+                                              ~~~~~~~~~~~            ^
+mcxlab.cpp:760:69: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 3 has type ‘dimtype {aka int}’ [-Wformat=]
+mcxlab.cpp:813:65: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘int’ [-Wformat=]
+         printf("mcx.workload=<<%ld>>;\n",arraydim[0]*arraydim[1]);
+                                          ~~~~~~~~~~~~~~~~~~~~~~~^
+Build Successfully

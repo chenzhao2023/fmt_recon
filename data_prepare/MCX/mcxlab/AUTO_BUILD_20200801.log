@@ -1,0 +1,159 @@
+nvcc -c -g -lineinfo -Xcompiler -Wall -Xcompiler "/openmp /W0" -DSAVE_DETECTORS -use_fast_math -arch=sm_30 -DMCX_TARGET_NAME='"Fermi MCX"' --compiler-options "" -DMCX_CONTAINER -DUSE_ATOMIC -use_fast_math -o mcx_core.obj  mcx_core.cu
+mcx_core.cu
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o mcx_utils.obj  mcx_utils.c
+mcx_utils.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o mcx_shapes.obj  mcx_shapes.c
+mcx_shapes.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o tictoc.obj  tictoc.c
+tictoc.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o mcextreme.obj  mcextreme.c
+mcextreme.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o cjson/cJSON.obj  cjson/cJSON.c
+cJSON.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o ubj/ubjw.obj  ubj/ubjw.c
+ubjw.c
+make -C zmat lib AR=ar CPPOPT="" USERLINKOPT=
+make[1]: Entering directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+Building zmatlib.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o zmatlib.obj zmatlib.c
+zmatlib.c
+Building lz4/lz4.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o lz4/lz4.obj lz4/lz4.c
+lz4.c
+Building lz4/lz4hc.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o lz4/lz4hc.obj lz4/lz4hc.c
+lz4hc.c
+Building easylzma/compress.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/compress.obj easylzma/compress.c
+compress.c
+Building easylzma/decompress.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/decompress.obj easylzma/decompress.c
+decompress.c
+Building easylzma/lzma_header.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/lzma_header.obj easylzma/lzma_header.c
+lzma_header.c
+Building easylzma/lzip_header.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/lzip_header.obj easylzma/lzip_header.c
+lzip_header.c
+Building easylzma/common_internal.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/common_internal.obj easylzma/common_internal.c
+common_internal.c
+Building easylzma/pavlov/LzmaEnc.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/LzmaEnc.obj easylzma/pavlov/LzmaEnc.c
+LzmaEnc.c
+Building easylzma/pavlov/LzmaDec.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/LzmaDec.obj easylzma/pavlov/LzmaDec.c
+LzmaDec.c
+Building easylzma/pavlov/LzmaLib.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/LzmaLib.obj easylzma/pavlov/LzmaLib.c
+LzmaLib.c
+Building easylzma/pavlov/LzFind.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/LzFind.obj easylzma/pavlov/LzFind.c
+LzFind.c
+Building easylzma/pavlov/Bra.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/Bra.obj easylzma/pavlov/Bra.c
+Bra.c
+Building easylzma/pavlov/BraIA64.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/BraIA64.obj easylzma/pavlov/BraIA64.c
+BraIA64.c
+Building easylzma/pavlov/Alloc.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/Alloc.obj easylzma/pavlov/Alloc.c
+Alloc.c
+Building easylzma/pavlov/7zCrc.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/7zCrc.obj easylzma/pavlov/7zCrc.c
+7zCrc.c
+Building ../libzmat.a
+ar cr -o ../libzmat.a zmatlib.obj lz4/lz4.obj lz4/lz4hc.obj easylzma/compress.obj easylzma/decompress.obj easylzma/lzma_header.obj easylzma/lzip_header.obj easylzma/common_internal.obj easylzma/pavlov/LzmaEnc.obj easylzma/pavlov/LzmaDec.obj easylzma/pavlov/LzmaLib.obj easylzma/pavlov/LzFind.obj easylzma/pavlov/Bra.obj easylzma/pavlov/BraIA64.obj easylzma/pavlov/Alloc.obj easylzma/pavlov/7zCrc.obj  
+make[1]: Leaving directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+make -C zmat lib AR=ar CPPOPT="" USERLINKOPT=
+make[1]: Entering directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+Building ../libzmat.a
+ar cr -o ../libzmat.a zmatlib.obj lz4/lz4.obj lz4/lz4hc.obj easylzma/compress.obj easylzma/decompress.obj easylzma/lzma_header.obj easylzma/lzip_header.obj easylzma/common_internal.obj easylzma/pavlov/LzmaEnc.obj easylzma/pavlov/LzmaDec.obj easylzma/pavlov/LzmaLib.obj easylzma/pavlov/LzFind.obj easylzma/pavlov/Bra.obj easylzma/pavlov/BraIA64.obj easylzma/pavlov/Alloc.obj easylzma/pavlov/7zCrc.obj  
+make[1]: Leaving directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+make -C zmat lib AR=ar CPPOPT="" USERLINKOPT=
+make[1]: Entering directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+Building ../libzmat.a
+ar cr -o ../libzmat.a zmatlib.obj lz4/lz4.obj lz4/lz4hc.obj easylzma/compress.obj easylzma/decompress.obj easylzma/lzma_header.obj easylzma/lzip_header.obj easylzma/common_internal.obj easylzma/pavlov/LzmaEnc.obj easylzma/pavlov/LzmaDec.obj easylzma/pavlov/LzmaLib.obj easylzma/pavlov/LzFind.obj easylzma/pavlov/Bra.obj easylzma/pavlov/BraIA64.obj easylzma/pavlov/Alloc.obj easylzma/pavlov/7zCrc.obj  
+make[1]: Leaving directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+cmd /c mex mcx_core.obj mcx_utils.obj mcx_shapes.obj tictoc.obj mcextreme.obj cjson/cJSON.obj ubj/ubjw.obj -output ../mcxlab/mcx -L"E:\Applications\CUDA7.5\CUDA7.5/lib/x64" -lcudart CXXFLAGS='$CXXFLAGS -g -DSAVE_DETECTORS -DMCX_CONTAINER /openmp  ' LDFLAGS='-L$TMW_ROOT$MATLABROOT/sys/os/$ARCH $LDFLAGS /openmp zmat/zmatlib.obj zmat/lz4/lz4.obj zmat/lz4/lz4hc.obj zmat/easylzma/*.obj zmat/easylzma/pavlov/*.obj -lzlib' mcxlab.cpp -outdir ../mcxlab -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  zmat/zmatlib.obj zmat/lz4/lz4.obj zmat/lz4/lz4hc.obj zmat/easylzma/*.obj zmat/easylzma/pavlov/*.obj -lzlib
+nvcc -c -g -lineinfo -Xcompiler -Wall -Xcompiler "/openmp /W0" -DSAVE_DETECTORS -use_fast_math -arch=sm_30 -DMCX_TARGET_NAME='"Fermi MCX"' --compiler-options "" -DMCX_CONTAINER -DUSE_ATOMIC -use_fast_math -o mcx_core.obj  mcx_core.cu
+mcx_core.cu
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o mcx_utils.obj  mcx_utils.c
+mcx_utils.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o mcx_shapes.obj  mcx_shapes.c
+mcx_shapes.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o tictoc.obj  tictoc.c
+tictoc.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o mcextreme.obj  mcextreme.c
+mcextreme.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o cjson/cJSON.obj  cjson/cJSON.c
+cJSON.c
+nvcc -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include" -c -D_CRT_SECURE_NO_DEPRECATE -DWIN32  -Xcompiler /openmp  -DMCX_CONTAINER -c -o ubj/ubjw.obj  ubj/ubjw.c
+ubjw.c
+make -C zmat lib AR=ar CPPOPT="" USERLINKOPT=
+make[1]: Entering directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+Building zmatlib.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o zmatlib.obj zmatlib.c
+zmatlib.c
+Building lz4/lz4.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o lz4/lz4.obj lz4/lz4.c
+lz4.c
+Building lz4/lz4hc.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o lz4/lz4hc.obj lz4/lz4hc.c
+lz4hc.c
+Building easylzma/compress.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/compress.obj easylzma/compress.c
+compress.c
+Building easylzma/decompress.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/decompress.obj easylzma/decompress.c
+decompress.c
+Building easylzma/lzma_header.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/lzma_header.obj easylzma/lzma_header.c
+lzma_header.c
+Building easylzma/lzip_header.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/lzip_header.obj easylzma/lzip_header.c
+lzip_header.c
+Building easylzma/common_internal.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/common_internal.obj easylzma/common_internal.c
+common_internal.c
+Building easylzma/pavlov/LzmaEnc.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/LzmaEnc.obj easylzma/pavlov/LzmaEnc.c
+LzmaEnc.c
+Building easylzma/pavlov/LzmaDec.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/LzmaDec.obj easylzma/pavlov/LzmaDec.c
+LzmaDec.c
+Building easylzma/pavlov/LzmaLib.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/LzmaLib.obj easylzma/pavlov/LzmaLib.c
+LzmaLib.c
+Building easylzma/pavlov/LzFind.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/LzFind.obj easylzma/pavlov/LzFind.c
+LzFind.c
+Building easylzma/pavlov/Bra.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/Bra.obj easylzma/pavlov/Bra.c
+Bra.c
+Building easylzma/pavlov/BraIA64.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/BraIA64.obj easylzma/pavlov/BraIA64.c
+BraIA64.c
+Building easylzma/pavlov/Alloc.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/Alloc.obj easylzma/pavlov/Alloc.c
+Alloc.c
+Building easylzma/pavlov/7zCrc.obj
+nvcc -Ieasylzma -Ieasylzma/pavlov -Ilz4 -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  -c -o easylzma/pavlov/7zCrc.obj easylzma/pavlov/7zCrc.c
+7zCrc.c
+Building ../libzmat.a
+ar cr -o ../libzmat.a zmatlib.obj lz4/lz4.obj lz4/lz4hc.obj easylzma/compress.obj easylzma/decompress.obj easylzma/lzma_header.obj easylzma/lzip_header.obj easylzma/common_internal.obj easylzma/pavlov/LzmaEnc.obj easylzma/pavlov/LzmaDec.obj easylzma/pavlov/LzmaLib.obj easylzma/pavlov/LzFind.obj easylzma/pavlov/Bra.obj easylzma/pavlov/BraIA64.obj easylzma/pavlov/Alloc.obj easylzma/pavlov/7zCrc.obj  
+make[1]: Leaving directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+make -C zmat lib AR=ar CPPOPT="" USERLINKOPT=
+make[1]: Entering directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+Building ../libzmat.a
+ar cr -o ../libzmat.a zmatlib.obj lz4/lz4.obj lz4/lz4hc.obj easylzma/compress.obj easylzma/decompress.obj easylzma/lzma_header.obj easylzma/lzip_header.obj easylzma/common_internal.obj easylzma/pavlov/LzmaEnc.obj easylzma/pavlov/LzmaDec.obj easylzma/pavlov/LzmaLib.obj easylzma/pavlov/LzFind.obj easylzma/pavlov/Bra.obj easylzma/pavlov/BraIA64.obj easylzma/pavlov/Alloc.obj easylzma/pavlov/7zCrc.obj  
+make[1]: Leaving directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+make -C zmat lib AR=ar CPPOPT="" USERLINKOPT=
+make[1]: Entering directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+Building ../libzmat.a
+ar cr -o ../libzmat.a zmatlib.obj lz4/lz4.obj lz4/lz4hc.obj easylzma/compress.obj easylzma/decompress.obj easylzma/lzma_header.obj easylzma/lzip_header.obj easylzma/common_internal.obj easylzma/pavlov/LzmaEnc.obj easylzma/pavlov/LzmaDec.obj easylzma/pavlov/LzmaLib.obj easylzma/pavlov/LzFind.obj easylzma/pavlov/Bra.obj easylzma/pavlov/BraIA64.obj easylzma/pavlov/Alloc.obj easylzma/pavlov/7zCrc.obj  
+make[1]: Leaving directory '/home/Qianqian/space/autobuild/nightly/mcx/mcx/mcx/src/zmat'
+CXXFLAGS='-DSAVE_DETECTORS -fopenmp  ' LFLAGS='-fopenmp zmat/zmatlib.obj zmat/lz4/lz4.obj zmat/lz4/lz4hc.obj zmat/easylzma/*.obj zmat/easylzma/pavlov/*.obj -lzlib' LDFLAGS='' mkoctfile mcx_core.obj mcx_utils.obj mcx_shapes.obj tictoc.obj mcextreme.obj cjson/cJSON.obj ubj/ubjw.obj -output ../mcxlab/mcx.mex -L"E:\Applications\CUDA7.5\CUDA7.5/lib/x64" -lcudart --mex mcxlab.cpp -Izmat -Izmat/easylzma -I/usr/local/cuda/include -Iubj -I"E:\Applications\CUDA7.5\CUDA7.5/lib/include"  zmat/zmatlib.obj zmat/lz4/lz4.obj zmat/lz4/lz4hc.obj zmat/easylzma/*.obj zmat/easylzma/pavlov/*.obj -lzlib
+g++: error: CreateProcess: No such file or directory
+make: *** [Makefile:236: ../bin/mcx] Error 1
+Build Successfully
